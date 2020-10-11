@@ -41,7 +41,7 @@ ____
 or
 
 >\>>>print (variable.c_str()) 
-
+____
 ### How to use operator+ with different data types:
 1. MyString is always on the left:
 >\>>>test1 = "kfkf"
