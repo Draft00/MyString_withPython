@@ -12,7 +12,7 @@ hello - name of module (I know this is bad, but I was too lazy to rename it).
 2. Command:
 >\>>>import hello
 
-Now you can use MyString objects. The example below:
+Now you can use MyString objects. The example below.
 ____
 ### How to use constructors:
 
