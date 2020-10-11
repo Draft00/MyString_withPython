@@ -34,7 +34,7 @@ ____
 >\>>>test.equal_char_array("arrayofchar")
 3. MyString = std::string:
 >\>>>test.equal_std_string("stringstd");
-
+____
 ### How to print MyString variable:
 >\>>>print (variable)
 
@@ -45,7 +45,9 @@ or
 ### How to use operator+ with different data types:
 1. MyString is always on the 'left':
 >\>>>test1 = "kfkf"
+
 >\>>>test2 = hello.MyString("lala")
+
 >\>>>test3 = test2 + test1. 
 
 ![cmd](https://github.com/Draft00/MyString_withPython/blob/main/images/cmd.PNG)
