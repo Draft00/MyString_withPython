@@ -2,7 +2,7 @@
 
 How to use (OK, maybe how I use it):
 ____
-### How to start Python with MyString class:
+### How to start Python with MyString class quick and easy to see "whether it works at all":
 
 1. Go to the folder where the .py and .pyd files are stored. Command: 
 >\>python
