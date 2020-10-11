@@ -12,9 +12,7 @@ hello - name of module (I know this is bad, but I was too lazy to rename it).
 2. Command:
 >\>>>import hello
 
-Now you can use MyString objects. Example:
-
-![cmd](https://github.com/Draft00/MyString_withPython/blob/main/images/cmd.PNG)
+Now you can use MyString objects. The example below:
 ____
 ### How to use constructors:
 
@@ -50,3 +48,4 @@ or
 >\>>>test2 = hello.MyString("lala")
 >\>>>test3 = test2 + test1. 
 
+![cmd](https://github.com/Draft00/MyString_withPython/blob/main/images/cmd.PNG)
