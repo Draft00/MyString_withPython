@@ -43,7 +43,7 @@ or
 >\>>>print (variable.c_str()) 
 
 ### How to use operator+ with different data types:
-1. MyString is always on the 'left':
+1. MyString is always on the left:
 >\>>>test1 = "kfkf"
 
 >\>>>test2 = hello.MyString("lala")
