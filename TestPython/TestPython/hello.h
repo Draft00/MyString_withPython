@@ -1,40 +1,28 @@
 #ifndef MY_STRING_H
 #define MY_STRING_H
 
-#include <string> //this is for std::string constructor
-#include <initializer_list> // std::initializer_list
+#include <string> 
+#include <initializer_list>
 
 class MyString
 {
-	//ndr3w: usualy all private fields declraning at the bottom. Main reason - encapsulation. User are interested of a class interface or public methods at first.
-	/*
-	class MyString
-	{
-	public:
-		more interesting for user
-	protected:
-		less interesting
-	private:
-		absolutely not interesting except high level of user curiosity
-	*/
 
 public:
 	static constexpr const size_t npos = -1;
 
 
 public:
-	MyString();							// default constructor
-	MyString(const MyString& other);			// copy constructor
+	MyString();							
+	MyString(const MyString& other);			
 
-	//ndr3w: use const for immutable vars
-	MyString(const char* const cchar_array);				// char array constructor
-	MyString(const std::string& std_string);				// std::string constructor. 
+	MyString(const char* const cchar_array);				
+	MyString(const std::string& std_string);				
 
-	MyString(const size_t count, const char c); //ndr3w: much better add an arg names in declarations! Names are comments for you code	(+) 
+	MyString(const size_t count, const char c); 
 	MyString(const std::initializer_list<char>& list);
 	MyString(const char* const cchar_array, const size_t count);
 
-	//ndr3w: too much public key words	(+)
+
 	~MyString();
 
 	//=
@@ -69,13 +57,7 @@ public:
 	MyString operator+ (const char* cchar_array) const;
 	MyString operator+ (const std::string& std_string) const;
 
-	//ndr3w: alignment! (5?)
-	/*friend bool operator == (const MyString& left, const MyString& right);
-	friend bool operator != (const MyString& left, const MyString& right);
-	friend bool operator <  (const MyString& left, const MyString& right);
-	friend bool operator >  (const MyString& left, const MyString& right);
-	friend bool operator <= (const MyString& left, const MyString& right);
-	friend bool operator >= (const MyString& left, const MyString& right);*/
+	//friend bool operator == (const MyString& left, const MyString& right);
 
 	bool operator == (const MyString& left) const;
 	bool operator != (const MyString& left) const;
@@ -84,6 +66,7 @@ public:
 	bool operator <= (const MyString& left) const;
 	bool operator >= (const MyString& left) const;
 
+	//for Python
 	void __setitem__(size_t i, char c);
 	const char __getitem__(size_t i);
 
@@ -92,7 +75,6 @@ public:
 	char& operator [] (size_t);
 
 	const char* c_str() const;
-	char* c_str2();
 	const char* data() const;
 
 	size_t length() const;
@@ -126,11 +108,10 @@ public:
 	MyString& replace(size_t index, size_t count, const char* cchar_array);
 	MyString& replace(size_t index, size_t count, const std::string& std_string);
 
-	MyString substr(size_t index, size_t count);
-	MyString substr(size_t index);
+	MyString substr(size_t index, size_t count) const;
+	MyString substr(size_t index) const;
 
-	//ok. I'll remember that for the future, but still (4?)
-	//ndr3w: the _ (understroke) prefix is not recommend to use for identation of private fields or methods. Main reason - understroke is reserved for internal compiler usage. 
+
 private:
 	void _dealloc_cstring(char*& buffer);
 	void _setLength(const size_t len);
@@ -153,12 +134,10 @@ private:
 	void _replace(size_t pos, size_t count, const char* cchar_array);
 
 private:
-	//ndr3w: str_ prefix is useless and decrease the readability	(+) + align code with tabs	(2?)
 	size_t _length = 0;				// length
-	size_t _capacity = 0;				// capacity
+	size_t _capacity = 0;			// capacity
 	char* _str = nullptr;			// c-string
 
-	//ndr3w: read about constexpr	(3?)
 	static constexpr const size_t _increaseBy = 1;
 };
 

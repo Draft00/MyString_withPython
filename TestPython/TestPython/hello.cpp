@@ -204,24 +204,6 @@
 	{
 		return (*this)._compare(left.c_str()) >= 0;
 	}
-	/*
-	bool operator<(const MyString & left, const MyString & right)
-	{
-		return left._compare(right._str) < 0;
-	}
-	bool operator>(const MyString & left, const MyString & right)
-	{
-		return left._compare(right._str) > 0;
-	}
-	bool operator<=(const MyString & left, const MyString & right)
-	{
-		return left._compare(right._str) <= 0;
-	}
-	bool operator>=(const MyString & left, const MyString & right)
-	{
-		return left._compare(right._str) >= 0;
-	}
-	*/
 
 	/*
 		iostream
@@ -245,7 +227,7 @@
 				break;
 			str.append(1, c);
 		} while (true);
-		str.append(1, '\0');
+		//str.append(1, '\0');
 		return is;
 	}
 
@@ -298,7 +280,7 @@
 	}
 	size_t MyString::size() const
 	{
-		return  length(); //ndr3w: if class method doing same funtionality just use existing code	(+)
+		return  length(); 
 	}
 	size_t MyString::capacity() const
 	{
@@ -306,7 +288,7 @@
 	}
 	bool MyString::empty() const
 	{
-		return size() == 0; //ndr3w: if we have wrappers of private fields mush better use them. If we have to change a logic for size determination we will change size() method only.	(+)
+		return size() == 0; 
 	}
 	void MyString::shrink_to_fit(size_t cap)
 	{
@@ -320,10 +302,7 @@
 	{
 		return data();
 	}
-	char* MyString::c_str2()
-	{
-		return _str; 
-	}
+
 	const char* MyString::data() const
 	{
 		return _str;
@@ -364,7 +343,7 @@
 	}
 	MyString& MyString::append(const std::string & std_string, size_t index, size_t count)
 	{
-		size_t std_string_length = strlen(std_string.c_str());
+		size_t std_string_length = std_string.length();
 		if (index + count > std_string_length)
 			throw;
 		char* buffer = _substr(std_string.c_str(), index, count);
@@ -379,7 +358,7 @@
 	}
 	MyString& MyString::append(size_t count, char c)
 	{
-		char* buffer = _alloc_cstring(count, c); //ndr3w: mb here should be char* buffer = _alloc_cstring(...); like usual alloc function	(+)
+		char* buffer = _alloc_cstring(count, c); 
 		_append(buffer, count);
 		_dealloc_cstring(buffer);
 		return *this;
@@ -443,28 +422,31 @@
 	/*
 		substr
 	*/
-	MyString MyString::substr(size_t index, size_t count)
+	MyString MyString::substr(size_t index, size_t count) const
 	{
 		if (index + count > _length)
 			throw;
+
 		char* buffer = nullptr;
 		buffer = _substr(_str, index, count);
 
-		//MyString result;
-		//result = buffer; //not need to set length to 0
 		MyString result(buffer);
-		_dealloc_cstring(buffer);
+		delete[] buffer;
+		buffer = nullptr; 
+		//_dealloc_cstring(buffer);
 		return result;
 	}
 
-	MyString MyString::substr(size_t index)
+	MyString MyString::substr(size_t index) const
 	{
 		if (index > _length)
 			throw;
 		size_t count = strlen(_str) - index;
-		char* buffer = _substr(_str, index, count); //ndr3w: mb here it should be char *buffer = _substr(index, count); we dont need pass the _str because it is our own field (+)
+		char* buffer = _substr(_str, index, count); 
 		MyString result(buffer);
-		_dealloc_cstring(buffer);
+		delete[] buffer;
+		buffer = nullptr;
+		//_dealloc_cstring(buffer);
 		return result;
 	}
 
@@ -493,16 +475,10 @@
 		_setCapacity(cap);
 	}
 
-	//	(+)
-	//ndr3w: _alloc_cstring and _delete_str should be antipodes but naming is confusing =\ Try to use alloc and dealloc! AND! ALLOCATOR ALWAYS RETURNING A POINTER! WE DONT NEED pass it as arg! 
-	// void *p = alloc(size); 
+	
 	char* MyString::_alloc_cstring(const size_t count) const
 	{
 		char* buffer = nullptr;
-		/*if (buffer)
-		{
-			throw;
-		}*/
 		buffer = new char[count + 1](); //the default constructor will fill the array with 0
 		return buffer;
 	}
@@ -514,7 +490,6 @@
 		cchar_array[begin] = '\0';
 	}
 
-	//ndr3w: name _delete_str is not clear for understanding.	(+)
 	void MyString::_dealloc_cstring(char*& buffer)
 	{
 		delete[] buffer;
@@ -652,10 +627,9 @@
 		if (_str == nullptr)
 			throw;
 
-		char* buffer = _substr(_str, pos + count, _length - count);
-		_clear_str(pos);
-		_append(buffer, strlen(buffer));
-		_dealloc_cstring(buffer);
+		for (size_t i = pos + count; i < _length; ++i)
+			operator[](i - count) = operator[](i);
+		_clear_str(_length - count); 
 	}
 	void MyString::_replace(size_t pos, size_t count, const char* cchar_array)
 	{

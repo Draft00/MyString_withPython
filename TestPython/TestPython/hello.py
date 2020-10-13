@@ -176,9 +176,6 @@ class MyString(object):
     def c_str(self):
         return _hello.MyString_c_str(self)
 
-    def c_str2(self):
-        return _hello.MyString_c_str2(self)
-
     def data(self):
         return _hello.MyString_data(self)
 

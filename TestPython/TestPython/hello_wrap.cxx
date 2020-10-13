@@ -5416,29 +5416,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_MyString_c_str2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  MyString *arg1 = (MyString *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  char *result = 0 ;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_MyString, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MyString_c_str2" "', argument " "1"" of type '" "MyString *""'"); 
-  }
-  arg1 = reinterpret_cast< MyString * >(argp1);
-  result = (char *)(arg1)->c_str2();
-  resultobj = SWIG_FromCharPtr((const char *)result);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_MyString_data(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   MyString *arg1 = (MyString *) 0 ;
@@ -6751,7 +6728,7 @@ SWIGINTERN PyObject *_wrap_MyString_substr__SWIG_0(PyObject *SWIGUNUSEDPARM(self
   if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_MyString, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MyString_substr" "', argument " "1"" of type '" "MyString *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MyString_substr" "', argument " "1"" of type '" "MyString const *""'"); 
   }
   arg1 = reinterpret_cast< MyString * >(argp1);
   ecode2 = SWIG_AsVal_size_t(swig_obj[1], &val2);
@@ -6764,7 +6741,7 @@ SWIGINTERN PyObject *_wrap_MyString_substr__SWIG_0(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "MyString_substr" "', argument " "3"" of type '" "size_t""'");
   } 
   arg3 = static_cast< size_t >(val3);
-  result = (arg1)->substr(arg2,arg3);
+  result = ((MyString const *)arg1)->substr(arg2,arg3);
   resultobj = SWIG_NewPointerObj((new MyString(static_cast< const MyString& >(result))), SWIGTYPE_p_MyString, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
@@ -6785,7 +6762,7 @@ SWIGINTERN PyObject *_wrap_MyString_substr__SWIG_1(PyObject *SWIGUNUSEDPARM(self
   if ((nobjs < 2) || (nobjs > 2)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_MyString, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MyString_substr" "', argument " "1"" of type '" "MyString *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MyString_substr" "', argument " "1"" of type '" "MyString const *""'"); 
   }
   arg1 = reinterpret_cast< MyString * >(argp1);
   ecode2 = SWIG_AsVal_size_t(swig_obj[1], &val2);
@@ -6793,7 +6770,7 @@ SWIGINTERN PyObject *_wrap_MyString_substr__SWIG_1(PyObject *SWIGUNUSEDPARM(self
     SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "MyString_substr" "', argument " "2"" of type '" "size_t""'");
   } 
   arg2 = static_cast< size_t >(val2);
-  result = (arg1)->substr(arg2);
+  result = ((MyString const *)arg1)->substr(arg2);
   resultobj = SWIG_NewPointerObj((new MyString(static_cast< const MyString& >(result))), SWIGTYPE_p_MyString, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
@@ -6849,8 +6826,8 @@ SWIGINTERN PyObject *_wrap_MyString_substr(PyObject *self, PyObject *args) {
 fail:
   SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'MyString_substr'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    MyString::substr(size_t,size_t)\n"
-    "    MyString::substr(size_t)\n");
+    "    MyString::substr(size_t,size_t) const\n"
+    "    MyString::substr(size_t) const\n");
   return 0;
 }
 
@@ -6903,7 +6880,6 @@ static PyMethodDef SwigMethods[] = {
 	 { "MyString___setitem__", _wrap_MyString___setitem__, METH_VARARGS, NULL},
 	 { "MyString___getitem__", _wrap_MyString___getitem__, METH_VARARGS, NULL},
 	 { "MyString_c_str", _wrap_MyString_c_str, METH_O, NULL},
-	 { "MyString_c_str2", _wrap_MyString_c_str2, METH_O, NULL},
 	 { "MyString_data", _wrap_MyString_data, METH_O, NULL},
 	 { "MyString_length", _wrap_MyString_length, METH_O, NULL},
 	 { "MyString_size", _wrap_MyString_size, METH_O, NULL},
