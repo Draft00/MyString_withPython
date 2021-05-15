@@ -1,4 +1,4 @@
-# README for A.Y. Chernov
+# README
 
 How to use (OK, maybe how I use it):
 ____
